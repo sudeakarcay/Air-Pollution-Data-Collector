@@ -11,11 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 14:51
- */
 @SpringBootApplication
 @ComponentScan("co.mobileaction.example.common")
 //@ComponentScan("co.mobileaction.example.worker")

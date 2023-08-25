@@ -1,7 +1,6 @@
 package co.mobileaction.example.web;
 
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.MessageConverter;
@@ -11,11 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 13:53
- */
 @SpringBootApplication
 @ComponentScan("co.mobileaction.example.common")
 public class WebApplicationConfig
