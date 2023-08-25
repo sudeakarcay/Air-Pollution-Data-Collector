@@ -1,0 +1,29 @@
+{
+  "name": "ma-multi-module-example",
+  "scripts": {
+  },
+  "env": {
+    "CLOUDAMQP_URL": {
+      "required": true
+    },
+    "DATABASE_URL": {
+      "required": true
+    },
+    "JAVA_WEB_OPTS": {
+      "required": true
+    },
+    "JAVA_WORKER_OPTS": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "logentries"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/gradle"
+    }
+  ]
+}

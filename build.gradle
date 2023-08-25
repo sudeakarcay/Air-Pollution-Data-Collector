@@ -1,0 +1,53 @@
+/**
+ *  NOTE: if we use plugins block, then in old versions of spring boot repackage cannot distinguish root module and
+ *  tries to find a main class unless we use the buildscript version
+ */
+plugins {
+    id 'org.springframework.boot' version '2.6.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'io.freefair.lombok' version '5.3.3.3'
+}
+
+subprojects {
+    group = 'co.mobileaction' // our domain group
+    version = '1.0' // we don't use versioning so it can be any semver
+
+    repositories {
+        mavenLocal() // first try local repo
+        mavenCentral()
+    }
+
+    apply plugin: 'java' // just java plugin
+    apply plugin: 'java-library' // for api() to work in gradle files; which replaces compile()
+    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management' // auto dependency resolutions for boot
+    apply plugin: 'jacoco' // for test reporting
+
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+
+    // disable default lombok config generation
+    generateLombokConfig.enabled = false
+
+    dependencies {
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+        testImplementation('com.h2database:h2')
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    tasks.withType(JavaCompile) { // generic encoding to prevent some problems
+        options.encoding = 'UTF-8'
+    }
+
+    jacocoTestReport { // for jacoco reports used by circle ci ma-java orb
+        reports {
+            xml.enabled true
+        }
+    }
+
+    test.finalizedBy jacocoTestReport // to make sure reports are generated after test
+}

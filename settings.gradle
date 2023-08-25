@@ -1,0 +1,5 @@
+rootProject.name = 'Patika-Project'
+include 'common'
+include 'web'
+include 'worker'
+
