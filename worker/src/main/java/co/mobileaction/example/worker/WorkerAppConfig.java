@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("co.mobileaction.example.common")
-//@ComponentScan("co.mobileaction.example.worker")
 public class WorkerAppConfig
 {
     @Value("${messaging.consumer.initial-size}")

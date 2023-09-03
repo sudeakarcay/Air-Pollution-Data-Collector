@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ICoordinateRepository extends JpaRepository<Coordinate, String>
 {
+
 }
 

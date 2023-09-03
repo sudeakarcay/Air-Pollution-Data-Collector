@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CoordinateQueueService implements ICoordinateQueueService
 {
-    private final AmqpTemplate coordinateQueueTemplate;
+    private final AmqpTemplate coordinateRequestQueueTemplate;
 
     @Override
     public void queueRequestForCoordinates(CoordinateDto coordinateDto)
     {
-        coordinateQueueTemplate.convertAndSend(coordinateDto);
+        coordinateRequestQueueTemplate.convertAndSend(coordinateDto);
 
     }
 }

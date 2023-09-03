@@ -8,14 +8,19 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestOperations;
 
 //Spring Boot will automatically load the properties in an application.properties file for all profiles,
 // and the ones in profile-specific .properties files only for the specified profile.
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan("co.mobileaction.example")
 @SpringBootConfiguration
-//@ComponentScan("co.mobileaction.example.common")
 public class CommonAppConfig
 {
     @Value("${messaging.server.url}")

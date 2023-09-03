@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +18,8 @@ public class CoordinateDto
 
     public CoordinateDto(Coordinate coordinate)
     {
-
+        this.name = coordinate.getCityName();
+        this.lat = coordinate.getLat();
+        this.lon = coordinate.getLon();
     }
 }
