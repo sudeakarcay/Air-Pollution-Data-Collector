@@ -25,3 +25,12 @@ CREATE TABLE coordinates (
     lat double precision NOT NULL,
     lon double precision NOT NULL
 );
+
+CREATE TABLE patikaSchema.historical_pollution (
+    id SERIAL PRIMARY KEY,
+    city VARCHAR(255),
+    date DATE,
+    so2 VARCHAR(255),
+    co VARCHAR(255),
+    o3 VARCHAR(255)
+);

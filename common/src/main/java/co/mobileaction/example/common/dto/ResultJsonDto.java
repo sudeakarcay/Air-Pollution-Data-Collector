@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 @AllArgsConstructor
 @Builder
 @Setter
-public class JsonFormatResultDto
+public class ResultJsonDto
 {
     @JsonProperty("Date")
     private String date;
@@ -23,12 +23,13 @@ public class JsonFormatResultDto
     public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 
-    public JsonFormatResultDto (HistoricalPollutionData historicalPollutionData)
+    public ResultJsonDto(HistoricalPollutionData historicalPollutionData)
     {
         setDate(historicalPollutionData.getLocalDate());
-        this.categoryDto = new CategoryDto(historicalPollutionData.getSo2(),historicalPollutionData.getCo(),historicalPollutionData.getO3());
+        this.categoryDto = new CategoryDto(historicalPollutionData.getSo2(), historicalPollutionData.getCo(), historicalPollutionData.getO3());
 
     }
+
     public void setDate(LocalDate date)
     {
         this.date = formatter.format(date);

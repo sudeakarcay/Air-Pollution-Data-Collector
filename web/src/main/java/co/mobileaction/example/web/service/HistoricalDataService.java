@@ -1,9 +1,9 @@
 package co.mobileaction.example.web.service;
 
-import co.mobileaction.example.common.converterService.DtoConverter;
+import co.mobileaction.example.common.util.DtoConverter;
 import co.mobileaction.example.common.dto.DailyPollutionDataDto;
-import co.mobileaction.example.common.dto.JsonFormatResultDto;
-import co.mobileaction.example.common.dto.JsonFormatTitleDto;
+import co.mobileaction.example.common.dto.ResultJsonDto;
+import co.mobileaction.example.common.dto.CityResultJsonDto;
 import co.mobileaction.example.common.enums.CityEnum;
 import co.mobileaction.example.common.model.HistoricalPollutionData;
 import co.mobileaction.example.common.repository.IHistoricalPollutionDataRepository;
@@ -28,41 +28,40 @@ public class HistoricalDataService implements IHistoricalDataService
     private final ICrawlerClient crawlerClient;
 
     @Override
-    public JsonFormatTitleDto getHistoricalPollutionData(CityEnum city, LocalDate startDate, LocalDate endDate)
+    public CityResultJsonDto getHistoricalPollutionData(CityEnum city, LocalDate startDate, LocalDate endDate)
     {
         log.info("Data is getting for city: {}, start date: {}, end date: {}", city, startDate, endDate);
         assert startDate != null;
         long daysBetween = ChronoUnit.DAYS.between(startDate, endDate) + 1;
-        JsonFormatTitleDto jsonFormatTitleDto = new JsonFormatTitleDto();
-        jsonFormatTitleDto.setCity(city);
-        List<JsonFormatResultDto> jsonFormatResultDtoList = new ArrayList<>();
+        CityResultJsonDto cityResultJsonDto = new CityResultJsonDto();
+        cityResultJsonDto.setCity(city);
+        List<ResultJsonDto> resultJsonDtoList = new ArrayList<>();
         for (int i = 0; i < daysBetween; i++)
         {
             LocalDate localDate = startDate.plusDays(i);
-            jsonFormatResultDtoList.add(getHistoricalPollutionData(city,localDate));
+            resultJsonDtoList.add(getHistoricalPollutionData(city, localDate));
         }
 
-        jsonFormatTitleDto.setResults(jsonFormatResultDtoList);
-        return jsonFormatTitleDto;
+        cityResultJsonDto.setResults(resultJsonDtoList);
+        return cityResultJsonDto;
     }
 
-    private JsonFormatResultDto getHistoricalPollutionData(CityEnum city, LocalDate localDate)
+    private ResultJsonDto getHistoricalPollutionData(CityEnum city, LocalDate localDate)
     {
 
         Optional<HistoricalPollutionData> historicalPollutionData = historicalPollutionDataRepository.findByCityAndLocalDate(city, localDate);
         if (historicalPollutionData.isPresent())
         {
             log.info("Data already exists in the database");
-           return new JsonFormatResultDto(historicalPollutionData.get());
+            return new ResultJsonDto(historicalPollutionData.get());
         }
         else
         {
-            DtoConverter dtoConverter = new DtoConverter();
-            DailyPollutionDataDto dailyPollutionDataDto = crawlerClient.fetchHistoricalPollutionData(city,localDate);
+            DailyPollutionDataDto dailyPollutionDataDto = crawlerClient.fetchHistoricalPollutionData(city, localDate);
             log.info("Data does not exist in the database. Fetching from API.");
             historicalPollutionDataRepository.save(dailyPollutionDataDto.toHistoricalPollutionData());
             log.info("Data fetched from API and saved to the database.");
-            return dtoConverter.convertToJsonFormatResultDto(dailyPollutionDataDto);
+            return DtoConverter.convertToResultJsonDto(dailyPollutionDataDto);
         }
     }
 

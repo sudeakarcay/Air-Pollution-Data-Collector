@@ -22,4 +22,10 @@ public class CoordinateDto
         this.lat = coordinate.getLat();
         this.lon = coordinate.getLon();
     }
+
+    public CoordinateDto(double lat, double lon)
+    {
+        this.lat = lat;
+        this.lon = lon;
+    }
 }

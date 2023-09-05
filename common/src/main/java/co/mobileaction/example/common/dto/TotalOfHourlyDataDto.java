@@ -15,6 +15,3 @@ public class TotalOfHourlyDataDto
 {
     private List<HourlyPollutionDataDto> list;
 }
-
-
-//move hourly pollution data dto here

@@ -19,7 +19,7 @@ public class DailyPollutionDataDto
 
     public HistoricalPollutionData toHistoricalPollutionData()
     {
-        CategoryDto categoryDto = new CategoryDto(pollutionTypes.getSo2(), pollutionTypes.getCo(),pollutionTypes.getO3());
+        CategoryDto categoryDto = new CategoryDto(pollutionTypes.getSo2(), pollutionTypes.getCo(), pollutionTypes.getO3());
         return HistoricalPollutionData.builder()
                 .city(city)
                 .localDate(date)

@@ -12,6 +12,7 @@ public class CoordinateExecutorService implements ICoordinateExecutorService
 {
 
     private final ICoordinateRepository coordinateRepository;
+
     @Override
     public void executeMessage(CoordinateDto coordinateDto)
     {

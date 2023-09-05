@@ -1,6 +1,6 @@
 package co.mobileaction.example.common.dto;
 
-import co.mobileaction.example.common.converterService.CategoryConverter;
+import co.mobileaction.example.common.util.CategoryConverter;
 import co.mobileaction.example.common.enums.CategoryEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

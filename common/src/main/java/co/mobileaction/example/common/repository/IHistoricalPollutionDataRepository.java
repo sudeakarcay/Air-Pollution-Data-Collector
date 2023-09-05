@@ -4,6 +4,7 @@ import co.mobileaction.example.common.enums.CityEnum;
 import co.mobileaction.example.common.model.HistoricalPollutionData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -11,8 +12,9 @@ import java.util.Optional;
 @Repository
 public interface IHistoricalPollutionDataRepository extends JpaRepository<HistoricalPollutionData, Long>
 {
-     Optional<HistoricalPollutionData> findByCityAndLocalDate(CityEnum city, LocalDate localDate);
+    Optional<HistoricalPollutionData> findByCityAndLocalDate(CityEnum city, LocalDate localDate);
 
-     void deleteAllByCityAndLocalDateBetween(CityEnum city, LocalDate startDate,LocalDate endDate);
+    @Transactional
+    void deleteAllByCityAndLocalDateBetween(CityEnum city, LocalDate startDate, LocalDate endDate);
 
 }

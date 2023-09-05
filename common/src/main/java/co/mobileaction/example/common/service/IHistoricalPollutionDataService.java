@@ -1,10 +1,10 @@
 package co.mobileaction.example.common.service;
 
 
-import co.mobileaction.example.common.dto.JsonFormatTitleDto;
+import co.mobileaction.example.common.dto.CityResultJsonDto;
 
 public interface IHistoricalPollutionDataService
 {
-    void save (JsonFormatTitleDto jsonFormatTitleDto);
+    void save (CityResultJsonDto cityResultJsonDto);
 
 }
