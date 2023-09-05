@@ -66,28 +66,68 @@ Historical data retrieval is limited to dates from 27th November 2020 to the pre
 
 ## Example Request
 
-GET http://localhost:8080/historical/data?city=Mumbai&startDate=01-02-2023&endDate=02-02-2023
+GET http://localhost:8080/historical/data?city=Tokyo&startDate=29-12-2021&endDate=04-01-2022
 
 ## Example Response 
 
 ``` json
 {
-    "City": "Mumbai",
+    "City": "Tokyo",
     "Results": [
         {
-            "Date": "01-02-2023",
+            "Date": "29-12-2021",
             "Categories": {
-                "SO2": "Satisfactory",
+                "SO2": "Moderate",
+                "CO": "Hazardous",
+                "O3": "Good"
+            }
+        },
+        {
+            "Date": "30-12-2021",
+            "Categories": {
+                "SO2": "Moderate",
+                "CO": "Hazardous",
+                "O3": "Good"
+            }
+        },
+        {
+            "Date": "31-12-2021",
+            "Categories": {
+                "SO2": "Good",
+                "CO": "Hazardous",
+                "O3": "Good"
+            }
+        },
+        {
+            "Date": "01-01-2022",
+            "Categories": {
+                "SO2": "Good",
                 "CO": "Hazardous",
                 "O3": "Satisfactory"
             }
         },
         {
-            "Date": "02-02-2023",
+            "Date": "02-01-2022",
             "Categories": {
                 "SO2": "Satisfactory",
                 "CO": "Hazardous",
-                "O3": "Moderate"
+                "O3": "Good"
+            }
+        },
+        {
+            "Date": "03-01-2022",
+            "Categories": {
+                "SO2": "Moderate",
+                "CO": "Hazardous",
+                "O3": "Good"
+            }
+        },
+        {
+            "Date": "04-01-2022",
+            "Categories": {
+                "SO2": "Satisfactory",
+                "CO": "Hazardous",
+                "O3": "Good"
             }
         }
     ]
