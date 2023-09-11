@@ -24,10 +24,7 @@ The application logs whether data was fetched from the database or the API for e
 
 `Supported Cities:` Queries are supported for the following cities: London, Barcelona, Ankara, Tokyo, and Mumbai.
 
-`Date Range Limitation:`
-
-Historical data retrieval is limited to dates from 27th November 2020 to the present. Queries outside this range will result in an error message regarding the date range.
-
+`Date Range Limitation:` Historical data retrieval is limited to dates from 27th November 2020 to the present. Queries outside this range will result in an error message regarding the date range.
 
 
 ## Prerequisites
